@@ -25,9 +25,9 @@ class PostController extends Controller
       'content' => 'required'
     ]);
     
-    Post::create($request->all());
+    Post::create($request->only(['title', 'content']));
     
-    return redirect()->route('post.index');
+    return redirect()->route('posts.index');
   }
   
   public function edit(Post $post)
