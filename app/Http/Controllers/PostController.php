@@ -30,6 +30,11 @@ class PostController extends Controller
     return redirect()->route('posts.index');
   }
   
+  public function show(Post $post)
+  {
+    return view('post.show', compact('post'));
+  }
+  
   public function edit(Post $post)
   {
     return view('post.edit', compact('post'));
@@ -42,9 +47,9 @@ class PostController extends Controller
       'content' => 'required'
     ]);
     
-    $post.update($request->all());
+    $post->update($request->all());
     
-    return redirect()->route('posts.index');
+    return redirect()->route('posts.show', $post);
   }
   
   public function destroy(Post $post)
